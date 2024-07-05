@@ -1,0 +1,44 @@
+import { MaterialCommunityIcons, Ionicons } from "@expo/vector-icons";
+import { Tabs } from "expo-router";
+
+export default function TabLayout() {
+  return (
+    <Tabs screenOptions={{ headerShown: false }}>
+      <Tabs.Screen
+        name="index"
+        options={{
+          title: "Currently",
+          tabBarIcon: ({ color }) => (
+            <Ionicons size={28} name="time-outline" color={color} />
+          ),
+        }}
+      />
+      <Tabs.Screen
+        name="today"
+        options={{
+          title: "Today",
+          tabBarIcon: ({ color }) => (
+            <MaterialCommunityIcons
+              size={28}
+              name="calendar-today"
+              color={color}
+            />
+          ),
+        }}
+      />
+      <Tabs.Screen
+        name="weekly"
+        options={{
+          title: "Weekly",
+          tabBarIcon: ({ color }) => (
+            <MaterialCommunityIcons
+              size={28}
+              name="calendar-week"
+              color={color}
+            />
+          ),
+        }}
+      />
+    </Tabs>
+  );
+}
