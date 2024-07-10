@@ -32,7 +32,7 @@ export default function TabLayout() {
         name="weekly"
         options={{
           title: "Weekly",
-          tabBarActiveTintColor: "#32a852",
+          tabBarActiveTintColor: "#370278",
           tabBarIcon: ({ color }) => (
             <MaterialCommunityIcons
               size={28}

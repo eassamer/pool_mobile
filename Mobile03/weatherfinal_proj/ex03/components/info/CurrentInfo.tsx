@@ -64,13 +64,15 @@ export const CurrentInfo = ({
           style={{ alignSelf: "center", marginBottom: 10 }}
         />
       )}
-      <Text style={styles.windStyle}>
-        <FontAwesome5 name="wind" size={20} color="white" />
-        {"  "}
-        {temp.current?.wind_speed_10m && temp.current.wind_speed_10m}{" "}
-        {temp.current_units?.wind_speed_10m &&
-          temp.current_units.wind_speed_10m}
-      </Text>
+      {citySelected.name != "" && (
+        <Text style={styles.windStyle}>
+          <FontAwesome5 name="wind" size={20} color="white" />
+          {"  "}
+          {temp.current?.wind_speed_10m && temp.current.wind_speed_10m}{" "}
+          {temp.current_units?.wind_speed_10m &&
+            temp.current_units.wind_speed_10m}
+        </Text>
+      )}
     </ScrollView>
   );
 };
