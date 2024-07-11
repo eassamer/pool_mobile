@@ -38,11 +38,9 @@ const getWeatherIcon = (temp: number): string => {
   }
 };
 export const TodayInfo = ({
-  title,
   citySelected,
   temp,
 }: {
-  title?: string;
   citySelected: any;
   temp: {
     hourly: {
@@ -95,7 +93,7 @@ export const TodayInfo = ({
           </Text>
         </View>
       )}
-      {title === "Today" && citySelected.name != "" && (
+      { citySelected.name != "" && (
         <LineChart
           style={{
             alignSelf: "center",

@@ -48,9 +48,9 @@ export const CustomComponent = ({ title }: { title: string }) => {
         {!denied.includes(searchValue) && title === "Currently" ? (
           <CurrentInfo citySelected={citySelected} temp={temp} />
         ) : !denied.includes(searchValue) && title === "Today" ? (
-          <TodayInfo title={title} citySelected={citySelected} temp={temp} />
+          <TodayInfo citySelected={citySelected} temp={temp} />
         ) : !denied.includes(searchValue) && title === "Weekly" ? (
-          <WeeklyInfo title={title} citySelected={citySelected} temp={temp} />
+          <WeeklyInfo citySelected={citySelected} temp={temp} />
         ) : null}
       </ImageBackground>
     </View>

@@ -29,11 +29,9 @@ const getWeatherIcon = (temp: number): string => {
   }
 };
 export const WeeklyInfo = ({
-  title,
   citySelected,
   temp,
 }: {
-  title?: string;
   citySelected: any;
   temp: tempInterface;
 }) => {
@@ -84,7 +82,7 @@ export const WeeklyInfo = ({
           chartConfig={chartConfig}
         />
       )}
-      {title === "Weekly" && citySelected.name != "" && (
+      { citySelected.name != "" && (
         <ScrollView style={styles.horizontalContainer} horizontal={true}>
           {temp.daily?.temperature_2m_max.map((tmp, index) => (
             <View key={index} style={styles.tempCase}>
