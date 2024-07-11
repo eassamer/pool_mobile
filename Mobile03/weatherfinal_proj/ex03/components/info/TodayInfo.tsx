@@ -6,10 +6,10 @@ import { Fontisto } from "@expo/vector-icons";
 const screenWidth = Dimensions.get("window").width;
 const chartConfig = {
   backgroundGradientFrom: "#ffffff",
-  backgroundGradientFromOpacity: 0,
+  backgroundGradientFromOpacity: 1,
   backgroundGradientTo: "#ffffff",
-  backgroundGradientToOpacity: 0.5,
-  color: (opacity = 1) => `rgba(255, 255, 255, ${opacity})`,
+  backgroundGradientToOpacity: 1,
+  color: (opacity = 1) => `rgba(0, 0, 0, ${opacity})`,
   strokeWidth: 2, // optional, default 3
   barPercentage: 0.5,
   useShadowColorFromDataset: false, // optional
@@ -38,9 +38,11 @@ const getWeatherIcon = (temp: number): string => {
   }
 };
 export const TodayInfo = ({
+  title,
   citySelected,
   temp,
 }: {
+  title?: string;
   citySelected: any;
   temp: {
     hourly: {
@@ -65,8 +67,7 @@ export const TodayInfo = ({
     };
   };
 }) => {
-  const cleanedTime = temp.hourly?.time.map((time) => time.slice(11, 16));
-  console.log(cleanedTime);
+  const cleanedTime = temp.hourly?.time.map((time) => time.slice(11, 13) + "h");
   const data = {
     labels: cleanedTime?.filter((_, index) => index % 2 === 0) || [],
     datasets: [
@@ -75,7 +76,7 @@ export const TodayInfo = ({
           temp.hourly?.temperature_2m.filter(
             (_: any, index: number) => index % 2 === 0
           ) || [],
-        color: (opacity = 1) => `rgba(134, 65, 244, ${opacity})`, // optional
+        color: (opacity = 1) => `rgba(0, 0, 0, ${opacity})`, // optional
         strokeWidth: 2, // optional
       },
     ],
@@ -94,11 +95,12 @@ export const TodayInfo = ({
           </Text>
         </View>
       )}
-      {citySelected.name != "" && (
+      {title === "Today" && citySelected.name != "" && (
         <LineChart
           style={{
             alignSelf: "center",
             marginBottom: 30,
+            borderRadius: 10,
           }}
           data={data}
           width={screenWidth - 20}
@@ -110,7 +112,9 @@ export const TodayInfo = ({
         <ScrollView style={styles.horizontalContainer} horizontal={true}>
           {temp.hourly?.temperature_2m.map((tmp, index) => (
             <View key={index} style={styles.tempCase}>
-              <Text>{cleanedTime?.[index]}</Text>
+              <Text style={{ alignSelf: "center", fontWeight: "bold" }}>
+                {cleanedTime?.[index]}
+              </Text>
               <Fontisto
                 name={getWeatherIcon(tmp || 0) as any}
                 size={28}
